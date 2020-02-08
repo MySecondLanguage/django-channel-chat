@@ -1,4 +1,4 @@
 from django.db import models
 
-class Message(models.Model):
-    text = models.CharField(max_length=200)
+class Price(models.Model):
+    price = models.CharField(max_length=200)
