@@ -21,12 +21,12 @@ class PriceConsumer(WebsocketConsumer):
             self.channel_name
         )
 
-    # Receive message from WebSocket
+    # Receive price from WebSocket
     def receive(self, text_data):
         price_data_json = json.loads(text_data)
         price = price_data_json['price']
 
-        # Send message to room group
+        # Send price to room group
         async_to_sync(self.channel_layer.group_send)(
             self.room_group_name,
             {
@@ -39,7 +39,7 @@ class PriceConsumer(WebsocketConsumer):
     def send_price(self, event):
         price = event['price']
 
-        # Send message to WebSocket
+        # Send price to WebSocket
         self.send(text_data=json.dumps({
             'price': 'a price'
         }))
